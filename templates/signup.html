@@ -1,0 +1,172 @@
+{% extends 'base.html' %}
+{% block tittle %}Sign Up{% endblock tittle %}
+{% block style %}
+<style>
+    body {
+        background: rgb(247 247 254);
+
+    }
+
+  
+    .card {
+        background-color: white;
+        margin: auto;
+        width: 30%;
+        text-align: center;
+        padding-block: 1vh;
+        margin-block-start: 10vh;
+        border:1px solid white;
+        border-radius:1vw;
+        box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
+        border: 1px solid #dbdbdb;
+        border: 1px solid rgba(var(--b6a,219,219,219),1);
+        border-radius: 8px;
+}
+
+    .font {
+        margin-block: 3vh;
+        font-family: 'Monoton', cursive;
+    }
+
+    .form-floating {
+        margin-inline: 10%;
+    }
+
+    .loginbutton {
+        margin-block-start: 2vh;
+        padding: 1vh;
+        font-family: 'Kanit', sans-serif;
+        font-family: 'Monoton', cursive;
+        font-family: 'Montserrat', sans-serif;
+        color: #000;
+        background-color: #adb5bd;
+        border: 0.4vh solid #787160;
+        /* border: 2px solid #787160; */
+        margin-block-end: 1vh;
+    }
+
+    .loginbutton:hover {
+        background-color: #6c757d;
+        ;
+
+    }
+
+    .forgetpassword {
+        margin-block: 2vh;
+        text-decoration: unset;
+    }
+
+    .forgetpassword:hover {
+        text-decoration: underline;
+    }
+
+    .new {
+        background-color: #79dfc1;
+        text-decoration: none;
+        color: white;
+        width: 14vw;
+        margin: auto;
+        padding: 2vh;
+        margin-block-end: 3vh;
+        border-radius: 9px;
+    }
+
+    .new:hover {
+        background-color: #4dd4ac;
+        color: white;
+
+    }
+
+    .line {
+        align-items: center;
+        border-bottom: 1px solid #dadde1;
+        display: flex;
+        margin: 3vh 3vw;
+        text-align: center;
+    }
+
+    .signinbutton {
+        margin-block-start: 2vh;
+        padding: 1vh;
+        font-family: 'Kanit', sans-serif;
+        font-family: 'Monoton', cursive;
+        font-family: 'Montserrat', sans-serif;
+        color: #000;
+        background-color: #adb5bd;
+        border: 0.4vh solid #787160;
+        /* border: 2px solid #787160; */
+        margin-block-end: 4vh;
+    }
+
+    .signinbutton:hover {
+        background-color: #6c757d;
+
+
+    }
+
+    @media only screen and (max-width: 750px) {
+        .card {
+            width: 100%;
+            margin-block-start: 15%;
+            background-color: rgb(247 247 254);
+            /* border-block: rgb(247 247 254); */
+            border: 0px solid;
+            border-radius: 0px;
+            border-color: rgb(247 247 254);
+            box-shadow: none;
+}
+        
+
+        .new {
+            width: max-content;
+            margin-block: 1vh;
+
+        }
+
+
+    }
+</style>{% endblock style %}
+{% block slide %}
+        {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-warning alert-dismissible fade show {{ message.tags }}"style="margin:0vw;" role="alert">
+            <strong>{{ message }}</strong> Now you can <a href="/login">login</a>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+          {% endfor %}
+          {% endif %}
+{% endblock slide %}
+
+{% block body %}
+<form action="/signup" method="POST">
+{% csrf_token %}
+    <div class="card">
+        <h1 class="font">Sign Up</h1>
+        <div class="form-floating mb-3">
+            <input type="name" name="name" class="form-control" id="floatingInput" placeholder="name@example.com">
+            <label for="floatingInput">Enter UserName</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="email" name="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+            <label for="floatingInput">Enter Your Email</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password">
+            <label for="floatingPassword">Enter Password</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="password" name="confirmpassword" class="form-control" id="floatingPassword" placeholder="Password">
+            <label for="floatingPassword">Confirm Password</label>
+            {% if error %}
+            <h6 style="margin: auto;margin-block-start: 2vh;color: red;">{{error}}</h6>{% endif %}
+        </div>
+        <button type="submit" class="form-floating signinbutton">Sign-Up</button>
+</form>
+
+ 
+
+    
+
+
+</div>
+{% endblock body %}
